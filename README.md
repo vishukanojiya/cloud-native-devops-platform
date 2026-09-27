@@ -21,15 +21,19 @@ A production-style DevOps project demonstrating:
 
 ## Architecture
 
-GitHub → Jenkins → Docker → Registry → Argo CD → Kubernetes
+GitHub → Jenkins → Docker → Trivy → Registry → Argo CD → Kubernetes
 
-Observability:
+## Current Status
 
-Prometheus → Grafana
-Loki → Grafana
-Alertmanager → Notifications
+- FastAPI backend
+- PostgreSQL
+- Docker
+- Docker Compose
+- Database migrations
+- Seed data
+- GitHub repository
 
-Infrastructure:
+## Local Development
 
-Terraform → AWS
-Ansible → Configuration Management
+```bash
+docker compose -f docker/docker-compose.yml up -d
