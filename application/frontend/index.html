@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cloud Native DevOps Platform</title>
+</head>
+<body>
+
+    <h1>Cloud Native DevOps Platform</h1>
+
+    <button onclick="checkBackend()">Check Backend</button>
+
+    <p id="result"></p>
+
+    <script>
+        async function checkBackend() {
+            const response = await fetch("/api/db-health");
+            const data = await response.json();
+
+            document.getElementById("result").innerText =
+                JSON.stringify(data);
+        }
+    </script>
+
+</body>
+</html>
