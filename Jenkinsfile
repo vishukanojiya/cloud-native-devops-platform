@@ -45,6 +45,26 @@ pipeline {
                 }
             }
         }
+        stage('Update GitOps Image') {
+            steps {
+                withCredentials([usernamePassword(
+                    credentialsId: 'github-push',
+                    usernameVariable: 'GIT_USERNAME',
+                    passwordVariable: 'GIT_PASSWORD'
+                )]) {
+                    sh '''
+                        sed -i "s/newTag: \".*\"/newTag: \"${BUILD_NUMBER}\"/" kubernetes/overlays/dev/kustomization.yaml
 
+                        git config user.name "Jenkins"
+                        git config user.email "jenkins@local"
+
+                        git add kubernetes/overlays/dev/kustomization.yaml
+                        git commit -m "Update backend image to ${BUILD_NUMBER}"
+
+                        git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/vishukanojiya/cloud-native-devops-platform.git HEAD:main
+                    '''
+                }
+            }
+        }
     }
 }
