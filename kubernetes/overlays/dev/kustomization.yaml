@@ -9,7 +9,7 @@ resources:
 images:
   - name: cloud-native-backend
     newName: vishalkaojiya/cloud-native-backend
-    newTag: "1.0"
+    newTag: "16"
 
 replicas:
   - name: backend
