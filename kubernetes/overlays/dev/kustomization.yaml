@@ -6,6 +6,11 @@ namespace: dev
 resources:
   - ../../base
 
+images:
+  - name: cloud-native-backend
+    newName: vishalkaojiya/cloud-native-backend
+    newTag: "1.0"
+
 replicas:
   - name: backend
     count: 1
